@@ -1,4 +1,7 @@
-use tokio::{io, net::TcpListener};
+use tokio::{
+    io::{self, AsyncReadExt, AsyncWriteExt},
+    net::TcpListener,
+};
 
 #[tokio::main]
 async fn main() -> io::Result<()> {
@@ -8,9 +11,18 @@ async fn main() -> io::Result<()> {
         let (mut socket, _) = listener.accept().await?;
 
         tokio::spawn(async move {
-            let (mut rd, mut wr) = socket.split();
-            if io::copy(&mut rd, &mut wr).await.is_err() {
-                eprintln!("failed to copy");
+            let mut buf = vec![0; 1024];
+
+            loop {
+                match socket.read(&mut buf).await {
+                    Ok(0) => return,
+                    Ok(n) => {
+                        if socket.write_all(&buf[..n]).await.is_err() {
+                            return;
+                        }
+                    }
+                    Err(_) => return,
+                }
             }
         });
     }
