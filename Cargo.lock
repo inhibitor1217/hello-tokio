@@ -526,6 +526,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "my-tokio-stream"
+version = "0.1.0"
+dependencies = [
+ "mini-redis",
+ "tokio",
+ "tokio-stream",
+]
+
+[[package]]
 name = "num-integer"
 version = "0.1.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
