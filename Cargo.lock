@@ -519,6 +519,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "my-tokio-select"
+version = "0.1.0"
+dependencies = [
+ "tokio",
+]
+
+[[package]]
 name = "num-integer"
 version = "0.1.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"

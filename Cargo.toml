@@ -3,4 +3,5 @@
 members = [
   "my-redis",
   "my-tokio",
+  "my-tokio-select",
 ]
