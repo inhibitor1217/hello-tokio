@@ -5,4 +5,5 @@ members = [
   "my-tokio",
   "my-tokio-select",
   "my-tokio-stream",
+  "my-tower-timeout",
 ]
